@@ -2,6 +2,10 @@ import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './Components/RootLayout';
 import Home from './Components/Home';
+import Login from './Components/Login';
+import { AuthProvider } from './contexts/AuthContext';
+import Dashboard from './Components/Dashboard';
+import ProtectedRoute from './Components/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -12,14 +16,27 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />
       },
-      // Add more routes as needed
+      {
+        path: 'login',
+        element: <Login />
+      },
+      {
+        path: 'dashboard',
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        )
+      }
     ]
   }
 ]);
 
 function App() {
   return (
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   );
 }
 

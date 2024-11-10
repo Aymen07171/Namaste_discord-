@@ -1,20 +1,20 @@
-    import Header from '../Components/Header';
-    import Footer from '../Components/Footer';
-    import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
 
-    function RootLayout() {
-    return (
-        <div className="relative min-h-screen">
-        {/* Background div with blur */}
-        <div className="fixed inset-0 bg-[url('C:\Users\Public\Documents\motion_landingpage\src\assets\Background.png')] bg-contain blur-sm -z-10" />
-        {/* Content div */}
-        <div className="relative z-10">
-            <Header />
-            <Outlet />
-            <Footer />
-        </div>
-        </div>
-    );
-    }
+const RootLayout = () => {
+  return (
+    <div className="relative min-h-screen">
+      <div className="fixed inset-0 bg-[url('C:\Users\Public\Documents\motion_landingpage\src\assets\Background.png')] bg-contain blur-sm -z-10" />
+      <div className="relative z-10">
+        <Header />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+    </div>
+  );
+};
 
-    export default RootLayout;
+export default RootLayout;
