@@ -3,10 +3,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './Components/RootLayout';
 import Home from './Components/Home';
 import Login from './Components/Login';
-import { AuthProvider } from './contexts/AuthContext';
 import Dashboard from './Components/Dashboard';
 import ProtectedRoute from './Components/ProtectedRoute';
+import { AuthProvider } from './contexts/AuthContext';
+import { UsersProvider } from './contexts/UsersContext';
 
+// Define routes
 const router = createBrowserRouter([
   {
     path: '/',
@@ -35,7 +37,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <AuthProvider>
-      <RouterProvider router={router} />
+      <UsersProvider>
+        <RouterProvider router={router} />
+      </UsersProvider>
     </AuthProvider>
   );
 }
